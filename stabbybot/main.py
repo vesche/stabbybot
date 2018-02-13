@@ -6,9 +6,11 @@
 # https://github.com/vesche/stabbybot
 #
 
-import comm
-import time
+
 import websocket
+
+import comm
+import brain
 
 
 SERVER = '45.77.80.61:443'
@@ -19,13 +21,15 @@ USERNAME = 'sb'
 
 def main():
     ws = websocket.WebSocket()
-
     ws.settimeout(1)
     ws.connect('ws://%s' % SERVER, origin=GAME_URL)
 
+    # instantiate classes
     incoming = comm.Incoming()
     outgoing = comm.Outgoing(ws)
+    bot = brain.GenOne(outgoing)
 
+    # init comms
     outgoing.begin(GAME_VER)
     outgoing.setname(USERNAME)
 
@@ -33,7 +37,12 @@ def main():
     while True:
         data = ws.recv()
         incoming.process(data)
-        
+
+        if incoming.game_state['dead']:
+            print('Dead.')
+            break
+
+        bot.testB(incoming.game_state)
 
         #print(data)
 

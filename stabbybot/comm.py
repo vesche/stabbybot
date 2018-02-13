@@ -22,13 +22,14 @@ class Incoming():
     """Handle incoming game data."""
 
     def __init__(self):
-        self.game_data = {
+        self.game_state = {
             'perception': [],
-            'kill_info': {}
+            'kill_info': {'uid': None, 'x': None, 'y': None, 'killer': None},
+            'dead': False
         }
 
     def process(self, data):
-        """Process raw game data into game_data dict."""
+        """Process raw game data into game_state dict."""
         event_code = data[:2]
         # tmp
         try:
@@ -37,21 +38,23 @@ class Incoming():
         data = data[2:]
 
         if event_type == 'perception':
-            self.game_data['perception'] = []
+            self.game_state['perception'] = []
 
             data = data.split('|')
             data.pop()
             
             for i in data:
                 uid, x, y, status, direction = i.split(',')
-                self.game_data['perception'].append(
+                self.game_state['perception'].append(
                     {'uid': uid, 'x': x, 'y': y, 'status': status, 'direction': direction}
                 )
 
         elif event_type == 'kill_info':
             uid, x, y, killer = data.split(',')
-            self.game_data['kill_info'] = {'uid': uid, 'x': x, 'y': y, 'killer': killer}
+            self.game_state['kill_info'] = {'uid': uid, 'x': x, 'y': y, 'killer': killer}
 
+        elif event_type == 'killed_by':
+            self.game_state['dead'] = True
 
 class Outgoing(object):
     """Handle outgoing game data."""
@@ -67,7 +70,9 @@ class Outgoing(object):
         self.ws.send('%s%s' % ('10', uid))
 
     def move(self, x, y):
-        self.ws.send('%s%s%s' % ('07', x, y))
+        x = x.split('.')[0]
+        y = y.split('.')[0]
+        self.ws.send('%s%s,%s' % ('07', x, y))
 
     def setname(self, username):
         self.ws.send('%s%s' % ('03', username))
