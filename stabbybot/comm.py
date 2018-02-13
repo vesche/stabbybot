@@ -42,7 +42,6 @@ class Incoming():
 
             data = data.split('|')
             data.pop()
-            
             for i in data:
                 uid, x, y, status, direction = i.split(',')
                 self.game_state['perception'].append(

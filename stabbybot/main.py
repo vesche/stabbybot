@@ -41,7 +41,7 @@ def main():
             print('[-] You have been killed.')
             break
 
-        bot.testB(incoming.game_state)
+        bot.testC(incoming.game_state)
 
     #try:
     #    pass

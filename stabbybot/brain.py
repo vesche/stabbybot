@@ -30,3 +30,16 @@ class GenOne(object):
             uid = game_state['perception'][0]['uid']
             print('killing %s' % uid)
             self.outgoing.kill(uid)
+    
+    def testC(self, game_state):
+        """I wonder... a nope"""
+        if self.kill_info != game_state['kill_info']:
+            self.kill_info = game_state['kill_info']
+            print(self.kill_info)
+        
+            if self.kill_info['uid']:
+                print(self.kill_info['uid'])
+                #print('New kill by %s! On the way to (%s, %s)!'
+                #    % (self.kill_info['killer'], self.kill_info['x'], self.kill_info['y']))
+                #self.outgoing.move(self.kill_info['x'], self.kill_info['y'])
+                self.outgoing.kill(self.kill_info['uid'])
