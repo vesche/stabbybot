@@ -56,6 +56,7 @@ class Incoming():
         elif event_type == 'killed_by':
             self.game_state['dead'] = True
 
+
 class Outgoing(object):
     """Handle outgoing game data."""
 

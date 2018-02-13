@@ -6,7 +6,6 @@
 # https://github.com/vesche/stabbybot
 #
 
-
 import websocket
 
 import comm
@@ -33,21 +32,19 @@ def main():
     outgoing.begin(GAME_VER)
     outgoing.setname(USERNAME)
 
-    #try:
     while True:
         data = ws.recv()
         incoming.process(data)
 
+        # tmp, need some sort of logging
         if incoming.game_state['dead']:
-            print('Dead.')
+            print('[-] You have been killed.')
             break
 
         bot.testB(incoming.game_state)
 
-        #print(data)
-
-            # handle decisions next here
-            # ai.dostuff(incoming.game_data)
+    #try:
+    #    pass
     #except Exception as e:
     #    print(e)
     #    ws.close()
