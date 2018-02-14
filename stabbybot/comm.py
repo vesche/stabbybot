@@ -18,6 +18,24 @@ EVENTS = {
 }
 
 
+def incoming(gs, raw_data):
+    event_code = raw_data[:2]
+    # tmp
+    try:
+        event_type = EVENTS[event_code]
+    except: return
+    data = raw_data[2:]
+
+    if event_type == 'perception':
+        gs.perception(data)
+    
+    elif event_type == 'kill_info':
+        gs.kill_info(data)
+    
+    elif event_type == 'killed_by':
+        gs.killed_by(data)
+
+'''
 class Incoming():
     """Handle incoming game data."""
 
@@ -54,7 +72,7 @@ class Incoming():
 
         elif event_type == 'killed_by':
             self.game_state['dead'] = True
-
+'''
 
 class Outgoing(object):
     """Handle outgoing game data."""

@@ -8,6 +8,7 @@
 
 import websocket
 
+import state
 import comm
 import brain
 
@@ -24,7 +25,8 @@ def main():
     ws.connect('ws://%s' % SERVER, origin=GAME_URL)
 
     # instantiate classes
-    incoming = comm.Incoming()
+    # incoming = comm.Incoming()
+    gs = state.GameState()
     outgoing = comm.Outgoing(ws)
     bot = brain.GenOne(outgoing)
 
@@ -32,24 +34,23 @@ def main():
     outgoing.begin(GAME_VER)
     outgoing.setname(USERNAME)
 
-    while True:
-        data = ws.recv()
-        incoming.process(data)
+    try:
+        while True:
+            raw_data = ws.recv()
+            # incoming.process(data)
+            comm.incoming(gs, raw_data)
 
-        # tmp, need some sort of logging
-        if incoming.game_state['dead']:
-            print('[-] You have been killed.')
-            break
+            # tmp, need some sort of logging
+            if gs.game_state['dead']:
+                print('[-] You have been killed.')
+                break
+            
+            bot.testB(gs.game_state)
+    except KeyboardInterrupt:
+        pass
 
-        bot.testC(incoming.game_state)
-
-    #try:
-    #    pass
     #except Exception as e:
     #    print(e)
-    #    ws.close()
-    #    return
-    #except KeyboardInterrupt:
     #    ws.close()
     #    return
 
