@@ -28,7 +28,8 @@ def main():
     # incoming = comm.Incoming()
     gs = state.GameState()
     outgoing = comm.Outgoing(ws)
-    bot = brain.GenOne(outgoing)
+    # bot = brain.GenOne(outgoing)
+    bot = brain.GenTwo(outgoing)
 
     # init comms
     outgoing.begin(GAME_VER)
@@ -45,7 +46,8 @@ def main():
                 print('[-] You have been killed.')
                 break
             
-            bot.testB(gs.game_state)
+            # bot.testB(gs.game_state)
+            bot.main(gs.game_state)
     except KeyboardInterrupt:
         pass
 
