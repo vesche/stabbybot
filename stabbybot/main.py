@@ -57,6 +57,7 @@ def main():
                 print('[-] You have been killed.')
                 break
 
+            # print(gs.game_state)
             bot.main(gs.game_state)
     except KeyboardInterrupt:
         pass

@@ -6,10 +6,15 @@
 #
 
 EVENTS = {
+    '01': '01',
+    '02': '02',
     '03': 'login',
+    '04': '04',
     '05': 'perception',
+    '06': '06',
     '07': 'move',
-    '08': '?',
+    '08': '08',
+    '09': '09',
     '10': 'kill',
     '13': 'killed_by',
     '14': 'kill_info',
@@ -28,12 +33,27 @@ def incoming(gs, raw_data):
 
     if event_type == 'perception':
         gs.perception(data)
-    
     elif event_type == 'kill_info':
         gs.kill_info(data)
-    
     elif event_type == 'killed_by':
         gs.killed_by(data)
+    elif event_type == 'stats':
+        gs.stats(data)
+    elif event_type == 'target':
+        gs.target(data)
+
+    elif event_type == '01':
+        print(event_type + ' - ' + data)
+    elif event_type == '02':
+        print(event_type + ' - ' + data)
+    elif event_type == '04':
+        print(event_type + ' - ' + data)
+    elif event_type == '06':
+        print(event_type + ' - ' + data)
+    elif event_type == '08':
+        print(event_type + ' - ' + data)
+    elif event_type == '09':
+        print(event_type + ' - ' + data)
 
 '''
 class Incoming():

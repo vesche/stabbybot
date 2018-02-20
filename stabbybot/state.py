@@ -10,7 +10,9 @@ class GameState():
         self.game_state = {
             'perception': [],
             'kill_info': {'uid': None, 'x': None, 'y': None, 'killer': None},
-            'dead': False
+            'dead': False,
+            'stats': [],
+            'target': ()
         }
 
     def perception(self, data):
@@ -27,6 +29,21 @@ class GameState():
     def kill_info(self, data):
         uid, x, y, killer = data.split(',')
         self.game_state['kill_info'] = {'uid': uid, 'x': x, 'y': y, 'killer': killer}
-    
+
     def killed_by(self, data):
         self.game_state['dead'] = True
+
+    def stats(self, data):
+        self.game_state['stats'] = []
+
+        data = data.split('|')
+        data.pop()
+        for i in data:
+            name, score = i.split(',')
+            self.game_state['stats'].append((name, score))
+
+    def target(self, data):
+        try:
+            _, name, distance = data.split(',')
+            self.game_state['target'] = (name, distance)
+        except: pass
