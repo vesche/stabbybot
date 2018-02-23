@@ -59,11 +59,8 @@ def main():
             bot.main(gs.game_state)
     except KeyboardInterrupt:
         pass
-
-    #except Exception as e:
-    #    print(e)
-    #    ws.close()
-    #    return
+    except Exception as e:
+        print(e)
 
     ws.close()
 

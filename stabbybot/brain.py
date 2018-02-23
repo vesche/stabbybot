@@ -24,37 +24,20 @@ class GenTwo(object):
         self.max_step_count = 600
     
     def main(self, game_state):
-        # this might be stupid
-        #if self.is_locked():
-        #    return
-
         # by priority
         self.go_for_kill(game_state)
         self.random_walk(game_state)
     
     def is_locked(self):
-        if (self.walk_lock): # or...
+        if (self.walk_lock): # or ...
             return True
         return False
     
     def go_for_kill(self, game_state):
         if self.kill_info != game_state['kill_info']:
             self.kill_info = game_state['kill_info']
-
-            if self.kill_info['killer']:
-                pass
-                #log.kill(
-                #    killer=self.kill_info['killer'],
-                #    x=self.kill_info['x'],
-                #    y=self.kill_info['y']
-                #)
-                # print('New kill by %s at (%s, %s)!'
-                #    % (self.kill_info['killer'], self.kill_info['x'], self.kill_info['y']))
-            else:
-                return
-
             #for i in game_state['perception']:
-            # do things here
+            # act on kill here
     
     def random_walk(self, game_state):
         if not self.is_locked():
@@ -70,21 +53,8 @@ class GenTwo(object):
         
         self.walk_count += 1
 
-    '''
-    def walk_random_test(self, game_state):
-        if not self.walk_lock:
-            self.outgoing.move('500', '500')
-            self.walk_lock = True
-        self.count += 1
-        if self.count > 2000:
-            self.count = 0
-            self.outgoing.move('0', '0')
-            print('moving to top left')
-        print(self.count)
-    '''
 
-        
-
+'''
 class GenOne(object):
     """Generation 1 of the stabbybot. He's pretty dumb at the moment lol."""
     def __init__(self, outgoing):
@@ -120,3 +90,4 @@ class GenOne(object):
                 #    % (self.kill_info['killer'], self.kill_info['x'], self.kill_info['y']))
                 #self.outgoing.move(self.kill_info['x'], self.kill_info['y'])
                 self.outgoing.kill(self.kill_info['uid'])
+'''

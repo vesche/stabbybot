@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# stabbybot comm
+# stabbybot state
 # https://github.com/vesche/stabbybot
 #
 
