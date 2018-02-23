@@ -5,6 +5,9 @@
 # https://github.com/vesche/stabbybot
 #
 
+import log
+
+
 class GameState():
     def __init__(self):
         self.game_state = {
@@ -29,9 +32,11 @@ class GameState():
     def kill_info(self, data):
         uid, x, y, killer = data.split(',')
         self.game_state['kill_info'] = {'uid': uid, 'x': x, 'y': y, 'killer': killer}
+        log.kill(killer, x, y)
 
     def killed_by(self, data):
         self.game_state['dead'] = True
+        log.dead()
 
     def stats(self, data):
         self.game_state['stats'] = []

@@ -5,6 +5,9 @@
 # https://github.com/vesche/stabbybot
 #
 
+import log
+
+
 EVENTS = {
     '01': '01',
     '02': '02',
@@ -41,19 +44,8 @@ def incoming(gs, raw_data):
         gs.stats(data)
     elif event_type == 'target':
         gs.target(data)
-
-    elif event_type == '01':
-        print(event_type + ' - ' + data)
-    elif event_type == '02':
-        print(event_type + ' - ' + data)
-    elif event_type == '04':
-        print(event_type + ' - ' + data)
-    elif event_type == '06':
-        print(event_type + ' - ' + data)
-    elif event_type == '08':
-        print(event_type + ' - ' + data)
-    elif event_type == '09':
-        print(event_type + ' - ' + data)
+    # else:
+    #     log.unknown(event_type, data)
 
 '''
 class Incoming():

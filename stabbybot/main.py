@@ -12,6 +12,7 @@ import websocket
 import state
 import comm
 import brain
+import log
 
 
 # SERVER = '45.77.80.61'
@@ -52,12 +53,9 @@ def main():
             raw_data = ws.recv()
             comm.incoming(gs, raw_data)
 
-            # tmp, need some sort of logging
             if gs.game_state['dead']:
-                print('[-] You have been killed.')
                 break
-
-            # print(gs.game_state)
+            
             bot.main(gs.game_state)
     except KeyboardInterrupt:
         pass

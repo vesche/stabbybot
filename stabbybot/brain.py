@@ -7,6 +7,7 @@
 
 import random
 
+import log
 
 # notes:
 # it takes roughly 600 events for the longest move
@@ -41,8 +42,14 @@ class GenTwo(object):
             self.kill_info = game_state['kill_info']
 
             if self.kill_info['killer']:
-                print('New kill by %s at (%s, %s)!'
-                    % (self.kill_info['killer'], self.kill_info['x'], self.kill_info['y']))
+                pass
+                #log.kill(
+                #    killer=self.kill_info['killer'],
+                #    x=self.kill_info['x'],
+                #    y=self.kill_info['y']
+                #)
+                # print('New kill by %s at (%s, %s)!'
+                #    % (self.kill_info['killer'], self.kill_info['x'], self.kill_info['y']))
             else:
                 return
 
@@ -53,7 +60,7 @@ class GenTwo(object):
         if not self.is_locked():
             rand_x = random.randint(40, 400)
             rand_y = random.randint(40, 400)
-            print("[+] Random walk to (%d, %d)" % (rand_x, rand_y))
+            log.move(rand_x, rand_y)
             self.outgoing.move(str(rand_x), str(rand_y))
             self.walk_lock = True
             
