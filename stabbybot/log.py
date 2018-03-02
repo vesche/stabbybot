@@ -25,5 +25,11 @@ def move(x, y):
 def kill(killer, x, y):
     log_info("KILL: %s (%s, %s)" % (killer, x, y))
 
+def assassinating(uid):
+    log_info("ASSA: %s" % uid)
+
 def dead():
     log_bad("You have been killed.")
+
+def stats(li):
+    log_info("STAT: {}".format(li))

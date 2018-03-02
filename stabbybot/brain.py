@@ -5,7 +5,10 @@
 # https://github.com/vesche/stabbybot
 #
 
+import collections
 import random
+
+from scipy import spatial
 
 import log
 
@@ -13,6 +16,15 @@ import log
 # it takes roughly 600 events for the longest move
 # maybe should do this by seconds instead of by events...
 # longest move is about 15 seconds
+
+'''
+class GenThree(object):
+    def __init__(self, outgoing):
+        pass
+    
+    def main(self, game_state):
+        pass
+'''
 
 class GenTwo(object):
     def __init__(self, outgoing):
@@ -22,6 +34,7 @@ class GenTwo(object):
         self.walk_lock = False
         self.walk_count = 0
         self.max_step_count = 600
+        self.kill_delta = 20
     
     def main(self, game_state):
         # by priority
@@ -36,8 +49,27 @@ class GenTwo(object):
     def go_for_kill(self, game_state):
         if self.kill_info != game_state['kill_info']:
             self.kill_info = game_state['kill_info']
-            #for i in game_state['perception']:
-            # act on kill here
+            self.kill_lock = True
+
+            kill_x = float(game_state['kill_info']['x'])
+            kill_y = float(game_state['kill_info']['y'])
+
+            player_coords = collections.OrderedDict()
+            for i in game_state['perception']:
+                player_x = float(i['x'])
+                player_y = float(i['y'])
+                player_uid = i['uid']
+                player_coords[player_uid] = (player_x, player_y)
+            
+            # get player closest to kill coordinates
+            tree = spatial.KDTree(list(player_coords.values()))
+            distance, index = tree.query([(kill_x, kill_y)])
+
+            # go for kill if a player was close enough to the kill
+            if distance < 10:
+                kill_uid = list(player_coords.keys())[int(index)]
+                self.outgoing.kill(kill_uid)
+                log.assassinating(kill_uid)
     
     def random_walk(self, game_state):
         if not self.is_locked():

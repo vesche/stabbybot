@@ -39,13 +39,18 @@ class GameState():
         log.dead()
 
     def stats(self, data):
-        self.game_state['stats'] = []
+        old_stats = self.game_state['stats']
 
+        self.game_state['stats'] = []
         data = data.split('|')
         data.pop()
         for i in data:
             name, score = i.split(',')
             self.game_state['stats'].append((name, score))
+        
+        # log stats if changed
+        if old_stats != self.game_state['stats']:
+            log.stats(self.game_state['stats'])
 
     def target(self, data):
         try:

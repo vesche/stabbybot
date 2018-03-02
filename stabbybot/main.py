@@ -16,6 +16,7 @@ import log
 
 
 # SERVER = '45.77.80.61'
+# ALT_SERVER = '104.156.244.121'
 GAME_URL = 'http://stabby.io'
 GAME_VER = '000.0.4.3'
 
@@ -55,12 +56,12 @@ def main():
 
             if gs.game_state['dead']:
                 break
-            
+
             bot.main(gs.game_state)
     except KeyboardInterrupt:
         pass
-    except Exception as e:
-        print(e)
+    #except Exception as e:
+    #    print(e)
 
     ws.close()
 
