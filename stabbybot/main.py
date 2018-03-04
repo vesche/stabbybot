@@ -20,10 +20,10 @@ GAME_VER = '000.0.4.3'
 
 def get_parser():
     parser = argparse.ArgumentParser(description='stabbybot')
-    parser.add_argument('-s', '--server',
-                        help='server ip', required=True, type=str)
-    parser.add_argument('-u', '--username',
-                        help='username', default='sb', type=str)
+    parser.add_argument('-s', '--server', help='server ip',
+                        required=True, type=str)
+    parser.add_argument('-u', '--username', help='username',
+                        default='sb', type=str)
     return parser
 
 

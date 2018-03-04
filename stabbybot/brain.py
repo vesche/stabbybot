@@ -75,7 +75,6 @@ class GenTwo(object):
         self.walk_count += 1
 
 
-'''
 class GenOne(object):
     """Generation 1 of the stabbybot. He's pretty dumb at the moment lol."""
 
@@ -112,4 +111,3 @@ class GenOne(object):
                 #    % (self.kill_info['killer'], self.kill_info['x'], self.kill_info['y']))
                 #self.outgoing.move(self.kill_info['x'], self.kill_info['y'])
                 self.outgoing.kill(self.kill_info['uid'])
-'''
