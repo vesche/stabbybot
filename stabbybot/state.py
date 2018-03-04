@@ -9,13 +9,16 @@ import log
 
 
 class GameState():
+    """Keeps track of the current state of the game for stabbybot."""
+
     def __init__(self):
         self.game_state = {
             'perception': [],
             'kill_info': {'uid': None, 'x': None, 'y': None, 'killer': None},
             'dead': False,
             'stats': [],
-            'target': ()
+            'target': (),
+            'tod': None
         }
 
     def perception(self, data):
@@ -57,3 +60,10 @@ class GameState():
             _, name, distance = data.split(',')
             self.game_state['target'] = (name, distance)
         except: pass
+
+    def tod(self, data):
+        old_tod = self.game_state['tod']
+
+        if old_tod != data:
+            self.game_state['tod'] = data
+            log.tod(data)

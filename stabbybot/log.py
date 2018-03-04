@@ -5,6 +5,8 @@
 # https://github.com/vesche/stabbybot
 #
 
+# log types
+
 def log_info(message):
     print("[+] %s" % message)
 
@@ -14,7 +16,7 @@ def log_warn(message):
 def log_bad(message):
     print("[-] %s" % message)
 
-###
+# log events
 
 def unknown(event_type, data):
     log_warn("UNKN: %s - %s" % (event_type, data))
@@ -33,3 +35,6 @@ def dead():
 
 def stats(li):
     log_info("STAT: {}".format(li))
+
+def tod(data):
+    log_info("TOD: {}".format(data))

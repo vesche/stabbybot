@@ -7,17 +7,11 @@
 
 import log
 
-
 EVENTS = {
-    '01': '01',
-    '02': '02',
     '03': 'login',
-    '04': '04',
     '05': 'perception',
-    '06': '06',
     '07': 'move',
-    '08': '08',
-    '09': '09',
+    '09': 'tod',
     '10': 'kill',
     '13': 'killed_by',
     '14': 'kill_info',
@@ -46,6 +40,8 @@ def incoming(gs, raw_data):
         gs.stats(data)
     elif event_type == 'target':
         gs.target(data)
+    elif event_type == 'tod':
+        gs.tod(data)
     # uncomment this to see unknown events
     # else:
     #     log.unknown(event_type, data)

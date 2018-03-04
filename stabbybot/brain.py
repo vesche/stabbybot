@@ -12,21 +12,10 @@ from scipy import spatial
 
 import log
 
-# notes:
-# it takes roughly 600 events for the longest move
-# maybe should do this by seconds instead of by events...
-# longest move is about 15 seconds
-
-'''
-class GenThree(object):
-    def __init__(self, outgoing):
-        pass
-    
-    def main(self, game_state):
-        pass
-'''
 
 class GenTwo(object):
+    """Generation 2 of the stabbybot. Look at the little guy go!"""
+
     def __init__(self, outgoing):
         self.outgoing = outgoing
         self.kill_info = {'uid': None, 'x': None, 'y': None, 'killer': None}
@@ -42,7 +31,7 @@ class GenTwo(object):
         self.random_walk(game_state)
     
     def is_locked(self):
-        if (self.walk_lock): # or ...
+        if (self.walk_lock): # put other locks here
             return True
         return False
     
@@ -89,6 +78,7 @@ class GenTwo(object):
 '''
 class GenOne(object):
     """Generation 1 of the stabbybot. He's pretty dumb at the moment lol."""
+
     def __init__(self, outgoing):
         self.outgoing = outgoing
         self.kill_info = {'uid': None, 'x': None, 'y': None, 'killer': None}
