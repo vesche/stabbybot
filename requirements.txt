@@ -1,0 +1,2 @@
+websocket-client==0.46.0
+scipy==0.18.1
