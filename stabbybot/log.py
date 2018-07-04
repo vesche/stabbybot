@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-#
-# stabbybot log
-# https://github.com/vesche/stabbybot
-#
+"""
+stabbybot log
+https://github.com/vesche/stabbybot
+"""
 
 # log types
 

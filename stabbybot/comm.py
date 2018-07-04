@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-#
-# stabbybot comm
-# https://github.com/vesche/stabbybot
-#
+"""
+stabbybot comm
+https://github.com/vesche/stabbybot
+"""
 
 import log
 
@@ -24,10 +24,12 @@ def incoming(gs, raw_data):
     """Handle incoming game data."""
 
     event_code = raw_data[:2]
-    # tmp until I have all event codes mapped out
+
+    # tmp until all event codes are mapped out
     try:
         event_type = EVENTS[event_code]
     except: return
+
     data = raw_data[2:]
 
     if event_type == 'perception':
@@ -42,6 +44,7 @@ def incoming(gs, raw_data):
         gs.target(data)
     elif event_type == 'tod':
         gs.tod(data)
+
     # uncomment this to see unknown events
     # else:
     #     log.unknown(event_type, data)
@@ -52,7 +55,7 @@ class Outgoing(object):
 
     def __init__(self, ws):
         self.ws = ws
-    
+
     def begin(self, game_ver):
         self.ws.send('%s' % game_ver)
         self.ws.pong('')
@@ -67,3 +70,4 @@ class Outgoing(object):
 
     def setname(self, username):
         self.ws.send('%s%s' % ('03', username))
+

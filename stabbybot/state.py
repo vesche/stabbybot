@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-#
-# stabbybot state
-# https://github.com/vesche/stabbybot
-#
+"""
+stabbybot state
+https://github.com/vesche/stabbybot
+"""
 
 import log
 
@@ -50,7 +50,7 @@ class GameState():
         for i in data:
             name, score = i.split(',')
             self.game_state['stats'].append((name, score))
-        
+
         # log stats if changed
         if old_stats != self.game_state['stats']:
             log.stats(self.game_state['stats'])
@@ -67,3 +67,4 @@ class GameState():
         if old_tod != data:
             self.game_state['tod'] = data
             log.tod(data)
+

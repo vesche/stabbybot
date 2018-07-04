@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#
-# stabbybot main
-# https://github.com/vesche/stabbybot
-#
+"""
+stabbybot main
+https://github.com/vesche/stabbybot
+"""
 
 import argparse
 import websocket
@@ -63,3 +63,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
