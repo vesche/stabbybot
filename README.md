@@ -12,7 +12,7 @@ $ pip install -r requirements.txt
 ## Usage
 
 ```
-$ python stabbybot/main.py -s <server_ip> -u stabbybot
+$ python stabbybot/main.py -u stabbybot -s <server_ip> -p <server_port>
 [+] MOVE: (201, 104)
 [+] TOD: day
 [+] KILL: sam5 (110.52246, 357.28275)

@@ -1,26 +1,26 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 stabbybot main
 https://github.com/vesche/stabbybot
 """
 
+import log
+import comm
+import brain
+import state
 import argparse
 import websocket
 
-import state
-import comm
-import brain
-import log
-
 GAME_URL = 'http://stabby.io'
-GAME_VER = '000.0.4.3'
+GAME_VER = '000.0.4.7'
 
 
 def get_parser():
     parser = argparse.ArgumentParser(description='stabbybot')
     parser.add_argument('-s', '--server', help='server ip',
+                        required=True, type=str)
+    parser.add_argument('-p', '--port', help='server port',
                         required=True, type=str)
     parser.add_argument('-u', '--username', help='username',
                         default='sb', type=str)
@@ -31,11 +31,12 @@ def main():
     parser = get_parser()
     args = vars(parser.parse_args())
     server = args['server']
+    port = args['port']
     username = args['username']
 
     ws = websocket.WebSocket()
     ws.settimeout(1)
-    ws.connect('ws://%s:443' % server, origin=GAME_URL)
+    ws.connect('ws://%s:%s' % (server, port), origin=GAME_URL)
 
     # instantiate classes
     gs = state.GameState()
