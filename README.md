@@ -1,6 +1,6 @@
 # stabbybot
 
-This is a bot for the game [stabby.io](http://stabby.io). Check out [this article](http://vesche.github.io/articles/01-stabbybot.html) for a complete write up about stabbybot.
+This is a bot for the game [stabby.io](http://stabby.io). Check out [this article](https://um.wtf/articles/01-stabbybot.html) for a complete write up about stabbybot.
 
 ## Install
 ```
